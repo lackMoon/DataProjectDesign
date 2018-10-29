@@ -7,6 +7,7 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #define PARKSIZE 5
 typedef struct CarSite{
 	char reach;           //到达的车辆
@@ -47,7 +48,7 @@ void popRoad(CarMessage node)		//离开便道
 	road_next=Road->next;
 	while(road_next!=NULL){
 		if(road_next->number==node->number){
-			printf("%d天%d时:%d号车已离开便道，停留%d时\n",node->day,node->time,node->number,(node->day-road_next->day)*24+node->time-road_next->time);
+			printf("%d天%d时:%d号车已离开便道，停留%d时\n",node->day,node->time,node->number,(node->day-road_next->day)*24+abs(node->time-road_next->time));
 			road_pre->next=road_next->next;
 			free(road_next);
 			road_next=NULL;
